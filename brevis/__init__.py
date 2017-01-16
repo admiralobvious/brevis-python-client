@@ -24,6 +24,11 @@ class BrevisClient(object):
         return self._make_request('POST', '/shorten', data)
 
     def unshorten(self, short_url):
+        if short_url.startswith(self.base_url):
+            try:
+                short_url = short_url.rsplit('/', 1)[1]
+            except IndexError:
+                pass
         data = {
             'shortUrl': short_url
         }
