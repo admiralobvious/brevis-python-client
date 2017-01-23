@@ -1,4 +1,8 @@
+import logging
+
 import requests
+
+logger = logging.getLogger('brevis.client')
 
 
 class BrevisClient(object):
@@ -10,12 +14,26 @@ class BrevisClient(object):
         url = '{}{}'.format(self.base_url, endpoint)
         r = requests.Request(method=method, url=url, json=data)
         p = r.prepare()
-        s = self.session
-        resp = s.send(p)
+        resp = self.session.send(p)
 
-        if resp.status_code != 200:
-            return resp.raise_for_status()
-        return resp.json()
+        if resp is None:
+            msg = "Couldn't connect to '{}'".format(url)
+            logger.critical(msg)
+            raise requests.RequestException(msg)
+
+        if resp.status_code == 200:
+            try:
+                return resp.json()
+            except Exception as e:
+                if resp.text:
+                    logger.error('Unhandled error {} while parsing JSON response: {}'.format(e, resp.text))
+                else:
+                    return ''
+        else:
+            msg = "Got status code '{}' doing a '{}' to '{}' with body '{}".format(
+                resp.status_code, method, resp.url, resp.text)
+            logger.critical(msg)
+            resp.raise_for_status()
 
     def shorten(self, url):
         data = {
