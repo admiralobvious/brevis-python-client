@@ -1,5 +1,5 @@
 # brevis-python-client
-Python Client for the Brevis URL shortener API
+Python Client for the [Brevis](https://github.com/admiralobvious/brevis) URL shortener API
 
 ## How-to use
 
