@@ -6,7 +6,7 @@ logger = logging.getLogger('brevis.client')
 
 
 class BrevisClient(object):
-    def __init__(self, base_url, session=None):
+    def __init__(self, base_url='http://localhost:1323', session=None):
         self.base_url = base_url
         self.session = session or requests.Session()
 
@@ -34,6 +34,9 @@ class BrevisClient(object):
                 resp.status_code, method, resp.url, resp.text)
             logger.critical(msg)
             resp.raise_for_status()
+
+    def health(self):
+        return self._make_request('GET', '/', {})
 
     def shorten(self, url):
         data = {
