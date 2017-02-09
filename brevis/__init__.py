@@ -36,7 +36,7 @@ class BrevisClient(object):
             resp.raise_for_status()
 
     def health(self):
-        return self._make_request('GET', '/', {})
+        return self._make_request('GET', '/', None)
 
     def shorten(self, url):
         data = {
