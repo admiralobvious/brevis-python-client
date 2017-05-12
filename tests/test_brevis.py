@@ -32,3 +32,12 @@ class TestBrevis(unittest.TestCase):
         resp = self.client.unshorten(short_url)
 
         self.assertDictEqual(data, resp)
+
+    def test_health(self):
+        data = {
+            'message': 'Brevis: URL shortener API'
+        }
+        self.adapter.register_uri('GET', self.client.base_url+'/', json=data)
+        resp = self.client.health()
+
+        self.assertEqual(data, resp)
