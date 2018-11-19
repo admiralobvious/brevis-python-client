@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="brevis",
-    version="0.5.1",
+    version="0.5.2",
     description="Python client for the Brevis URL shortener API",
     url="http://github.com/admiralobvious/brevis-python-client",
     author="Alexandre Ferland",
