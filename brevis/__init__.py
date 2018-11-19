@@ -22,7 +22,7 @@ class BrevisClient(object):
             logger.critical(msg)
             raise requests.RequestException(msg)
 
-        if 400 <= resp.status_code:
+        if resp.status_code < 400:
             try:
                 return resp.json()
             except Exception as e:
