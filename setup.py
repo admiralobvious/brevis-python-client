@@ -10,6 +10,7 @@ setup(
     license="MIT",
     packages=["brevis"],
     zip_safe=False,
+    include_package_data=True,
     install_requires=["requests>=2.22"],
     tests_require=[
         "pytest==5.0.1",
