@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="brevis",
-    version="0.5.2",
+    version="0.6.0",
     description="Python client for the Brevis URL shortener API",
     url="http://github.com/admiralobvious/brevis-python-client",
     author="Alexandre Ferland",
@@ -10,18 +10,17 @@ setup(
     license="MIT",
     packages=["brevis"],
     zip_safe=False,
-    install_requires=["requests>=2.12"],
+    install_requires=["requests>=2.22"],
     tests_require=[
-        "pytest>=4.0.0",
-        "requests-mock>=1.5.2"
+        "pytest==5.0.1",
+        "requests-mock==1.6.0"
     ],
-    setup_requires=["pytest-runner>=4.2"],
+    setup_requires=["pytest-runner==5.1"],
     platforms="any",
     classifiers=[
         "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
-        "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
